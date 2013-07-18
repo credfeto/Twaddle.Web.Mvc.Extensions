@@ -24,7 +24,7 @@ using System.Security;
 [assembly: AssemblyDescription("Extension Attributes for ASP.NET MVC")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Twaddle Software")]
-[assembly: AssemblyProduct("Build Utilities")]
+[assembly: AssemblyProduct("Twaddle.Web.Mvc.Extensions")]
 [assembly: AssemblyCopyright("Copyright © Twaddle Software 1997-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

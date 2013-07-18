@@ -157,11 +157,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheFilterAttribute.cs" />
+    <Compile Include="Attributes\CacheFilterAttribute.cs" />
+    <Compile Include="Attributes\HttpStrictTransportSecurityFilterAttribute.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="PermanentRedirectResult.cs" />
+    <Compile Include="Results\PermanentRedirectResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoveWhiteSpaceAttribute.cs" />
+    <Compile Include="Attributes\RemoveWhiteSpaceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

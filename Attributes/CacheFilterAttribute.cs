@@ -14,17 +14,16 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Web;
 using System.Web.Mvc;
-
 using JetBrains.Annotations;
 
 #endregion
 
-namespace Twaddle.Web.Mvc.Extensions
+namespace Twaddle.Web.Mvc.Extensions.Attributes
 {
     /// <summary>
     /// The cache filter attribute.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public sealed class CacheFilterAttribute : ActionFilterAttribute
     {
         #region Constants and Fields

@@ -12,12 +12,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Web.Mvc;
-
 using JetBrains.Annotations;
 
 #endregion
 
-namespace Twaddle.Web.Mvc.Extensions
+namespace Twaddle.Web.Mvc.Extensions.Results
 {
     /// <summary>
     /// The permanent redirect result.

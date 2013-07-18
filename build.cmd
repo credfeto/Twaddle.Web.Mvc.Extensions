@@ -1,0 +1,1 @@
+nuget pack -build Twaddle.Web.Mvc.Extensions.csproj -Prop Configuration=Release

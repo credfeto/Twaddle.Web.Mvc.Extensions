@@ -36,7 +36,7 @@
         <NuGetToolsPath>$(SolutionDir).nuget</NuGetToolsPath>
         <PackagesConfig>packages.config</PackagesConfig>
     </PropertyGroup>
-
+    
     <PropertyGroup>
         <!-- NuGet command -->
         <NuGetExePath Condition=" '$(NuGetExePath)' == '' ">$(NuGetToolsPath)\NuGet.exe</NuGetExePath>
@@ -54,12 +54,16 @@
         <RestoreCommand>$(NuGetCommand) install "$(PackagesConfig)" -source "$(PackageSources)"  $(NonInteractiveSwitch) $(RequireConsentSwitch) -solutionDir "$(SolutionDir) " </RestoreCommand>
         <BuildCommand>$(NuGetCommand) pack "$(ProjectPath)" -Properties Configuration=$(Configuration) $(NonInteractiveSwitch) -OutputDirectory "$(PackageOutputDir)" -symbols</BuildCommand>
 
+        <!-- We need to ensure packages are restored prior to assembly resolve -->
+        <BuildDependsOn Condition="$(RestorePackages) == 'true'">
+            RestorePackages;
+            $(BuildDependsOn);
+        </BuildDependsOn>
 
         <!-- Make the build depend on restore packages -->
         <BuildDependsOn Condition="$(BuildPackage) == 'true'">
-          RestorePackages;
-          $(BuildDependsOn);
-          BuildPackage;
+            $(BuildDependsOn);
+            BuildPackage;
         </BuildDependsOn>
     </PropertyGroup>
 
@@ -75,7 +79,7 @@
     </Target>
 
     <Target Name="_DownloadNuGet">
-        <DownloadNuGet OutputFilename="$(NuGetExePath)" Condition="!Exists('$(NuGetExePath)')" />
+        <DownloadNuGet OutputFilename="$(NuGetExePath)" Condition=" '$(DownloadNuGetExe)' == 'true' AND !Exists('$(NuGetExePath)')" />
     </Target>
 
     <Target Name="RestorePackages" DependsOnTargets="CheckPrerequisites">

@@ -36,7 +36,11 @@
         <NuGetToolsPath>$(SolutionDir).nuget</NuGetToolsPath>
         <PackagesConfig>packages.config</PackagesConfig>
     </PropertyGroup>
-    
+
+    <PropertyGroup Condition="$(RestorePackages) != 'true'">
+      <RestorePackages>true</RestorePackages>
+    </PropertyGroup>
+  
     <PropertyGroup>
         <!-- NuGet command -->
         <NuGetExePath Condition=" '$(NuGetExePath)' == '' ">$(NuGetToolsPath)\NuGet.exe</NuGetExePath>

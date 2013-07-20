@@ -1,7 +1,19 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HttpStrictTransportSecurityFilterAttribute.cs" company="Twaddle Software">
+//   Copyright (c) Twaddle Software
+// </copyright>
+// <summary>
+//   Marks a response as explicitly not being cached.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+#region Using Directives
+
+using System;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
+
+#endregion
 
 namespace Twaddle.Web.Mvc.Extensions.Attributes
 {
@@ -23,12 +35,20 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
         /// <summary>
         ///     The maximum age for the STS setting to be valid for.
         /// </summary>
-        public TimeSpan MaxAge { get; set; }
+        public TimeSpan MaxAge
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         ///     Whether subdomains should also go over SSL.
         /// </summary>
-        public bool IncludeSubDomains { get; set; }
+        public bool IncludeSubDomains
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         ///     Called by the ASP.NET MVC framework before the action method executes.
@@ -36,8 +56,8 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
         /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            HttpRequestBase request = filterContext.HttpContext.Request;
-            HttpResponseBase response = filterContext.HttpContext.Response;
+            var request = filterContext.HttpContext.Request;
+            var response = filterContext.HttpContext.Response;
 
             if (request.IsSecureConnection ||
                 StringComparer.InvariantCultureIgnoreCase.Equals(request.Url.Scheme, "https"))

@@ -21,7 +21,7 @@ using JetBrains.Annotations;
 namespace Twaddle.Web.Mvc.Extensions.Attributes
 {
     /// <summary>
-    /// The cache filter attribute.
+    ///     The cache filter attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public sealed class CacheFilterAttribute : ActionFilterAttribute
@@ -29,7 +29,7 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
         #region Constants and Fields
 
         /// <summary>
-        /// The duration in seconds.
+        ///     The duration in seconds.
         /// </summary>
         private int _duration;
 
@@ -38,7 +38,7 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CacheFilterAttribute"/> class.
+        ///     Initializes a new instance of the <see cref="CacheFilterAttribute" /> class.
         /// </summary>
         public CacheFilterAttribute()
         {
@@ -50,10 +50,10 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
         #region Properties
 
         /// <summary>
-        /// Gets or sets the cache duration in seconds. The default is 10 seconds.
+        ///     Gets or sets the cache duration in seconds. The default is 10 seconds.
         /// </summary>
         /// <value>
-        /// The cache duration in seconds.
+        ///     The cache duration in seconds.
         /// </value>
         public int Duration
         {
@@ -75,10 +75,10 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
         #region Public Methods
 
         /// <summary>
-        /// Called by the MVC framework after the action method executes.
+        ///     Called by the MVC framework after the action method executes.
         /// </summary>
         /// <param name="filterContext">
-        /// The filter context.
+        ///     The filter context.
         /// </param>
         public override void OnActionExecuted([NotNull] ActionExecutedContext filterContext)
         {
@@ -103,7 +103,7 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
         #region Methods
 
         /// <summary>
-        /// The object invariant.
+        ///     The object invariant.
         /// </summary>
         [ContractInvariantMethod]
         [UsedImplicitly]

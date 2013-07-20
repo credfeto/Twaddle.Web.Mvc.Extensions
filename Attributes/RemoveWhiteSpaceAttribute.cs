@@ -15,7 +15,6 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
 using JetBrains.Annotations;
 
@@ -39,7 +38,7 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
         {
             Contract.Requires(filterContext != null);
 
-            HttpResponseBase response = filterContext.HttpContext.Response;
+            var response = filterContext.HttpContext.Response;
 
             if (response.ContentType == "text/html" && response.Filter != null)
             {
@@ -59,9 +58,11 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// <summary>
             ///     The base stream.
             /// </summary>
-            [NotNull] private readonly Stream _baseStream;
+            [NotNull]
+            private readonly Stream _baseStream;
 
-            [NotNull] private readonly StringBuilder _buffer = new StringBuilder();
+            [NotNull]
+            private readonly StringBuilder _buffer = new StringBuilder();
 
             /// <summary>
             ///     Whitespace removal regular expresion.
@@ -69,7 +70,8 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// <remarks>
             ///     See: http://stackoverflow.com/questions/8762993/remove-white-space-from-entire-html-but-inside-pre-with-regular-expressions for more details.
             /// </remarks>
-            [NotNull] private readonly Regex _whitespaceRemoval =
+            [NotNull]
+            private readonly Regex _whitespaceRemoval =
                 new Regex(
                     @"(?<=[^])\t{2,}|(?<=[>])\s{2,}(?=[<])|(?<=[>])\s{2,11}(?=[<])|(?=[\n])\s{2,}",
                     RegexOptions.Compiled);
@@ -106,7 +108,10 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// </value>
             public override bool CanRead
             {
-                get { return false; }
+                get
+                {
+                    return false;
+                }
             }
 
             /// <summary>
@@ -120,7 +125,10 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// </value>
             public override bool CanSeek
             {
-                get { return false; }
+                get
+                {
+                    return false;
+                }
             }
 
             /// <summary>
@@ -134,7 +142,10 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// </value>
             public override bool CanWrite
             {
-                get { return true; }
+                get
+                {
+                    return true;
+                }
             }
 
             /// <summary>
@@ -154,7 +165,10 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// </value>
             public override long Length
             {
-                get { throw new NotSupportedException(); }
+                get
+                {
+                    throw new NotSupportedException();
+                }
             }
 
             /// <summary>
@@ -177,9 +191,15 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// </value>
             public override long Position
             {
-                get { throw new NotSupportedException(); }
+                get
+                {
+                    throw new NotSupportedException();
+                }
 
-                set { throw new NotSupportedException(); }
+                set
+                {
+                    throw new NotSupportedException();
+                }
             }
 
             #endregion
@@ -238,8 +258,6 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// </exception>
             public override int Read(byte[] buffer, int offset, int count)
             {
-                Contract.Requires(buffer != null);
-
                 throw new NotSupportedException();
             }
 
@@ -322,9 +340,7 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
             /// </exception>
             public override void Write(byte[] buffer, int offset, int count)
             {
-                Contract.Requires(buffer != null);
-
-                string rawHtml = Encoding.UTF8.GetString(buffer, offset, count);
+                var rawHtml = Encoding.UTF8.GetString(buffer, offset, count);
                 _buffer.Append(rawHtml);
             }
 
@@ -361,7 +377,7 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
 
                 const string html5DocumentType = "<!DOCTYPE html>";
 
-                string cleaned = _whitespaceRemoval.Replace(rawHtml, string.Empty).Trim();
+                var cleaned = _whitespaceRemoval.Replace(rawHtml, string.Empty).Trim();
                 if (cleaned.StartsWith(html5DocumentType, StringComparison.Ordinal))
                 {
                     cleaned = cleaned.Insert(html5DocumentType.Length, Environment.NewLine);
@@ -369,7 +385,7 @@ namespace Twaddle.Web.Mvc.Extensions.Attributes
 
                 cleaned += Environment.NewLine;
 
-                byte[] encoded = Encoding.UTF8.GetBytes(cleaned);
+                var encoded = Encoding.UTF8.GetBytes(cleaned);
                 _baseStream.Write(encoded, 0, encoded.Length);
             }
 

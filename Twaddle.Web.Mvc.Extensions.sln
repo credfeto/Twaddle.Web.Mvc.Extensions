@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twaddle.Web.Mvc.Extensions", "Twaddle.Web.Mvc.Extensions.csproj", "{6270EFB0-6D3D-4BAF-870F-2969EA3C5268}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1D4129E2-2003-486E-A592-3D1219E6B5E7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F95EA2F6-57A4-4BCB-93F2-C4318F442A93}"
 	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
+		BuildAll.proj = BuildAll.proj
 	EndProjectSection
 EndProject
 Global

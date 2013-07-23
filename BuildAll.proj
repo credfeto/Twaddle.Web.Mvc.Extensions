@@ -7,7 +7,7 @@
 	</Target>
 
 	<Target Name="BuildSource">
-		<MSBuild Projects="BuildUtilities.sln" BuildInParallel="True" Properties="Configuration=Release;Platform=Any CPU" />
+		<MSBuild Projects="Twaddle.Web.Mvc.Extensions.sln" BuildInParallel="True" Properties="Configuration=Release;Platform=Any CPU" />
 	</Target>
 
 	<Target Name="PackageExecutables" DependsOnTargets="BuildSource">
